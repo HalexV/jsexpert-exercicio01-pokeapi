@@ -1,3 +1,5 @@
+Hálex Viotto Gomes
+
 # Story: Seu primeiro time pokemon
 
 A idéia é testar os fundamentos de `testing`, aplicando o que foi visto no 
