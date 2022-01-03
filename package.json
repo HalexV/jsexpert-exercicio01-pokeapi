@@ -17,6 +17,9 @@
     "e2e",
     "unit"
   ],
+  "engines": {
+    "node": "17"
+  },
   "author": "Wellington S. Almeida (WellsSA)",
   "license": "MIT"
 }
