@@ -6,7 +6,7 @@ import { RootController } from './controllers/root-controller.js'
 const rootController = new RootController()
 
 const requestListener = async (request, response) => {
-  
+
   const routes = {
     default: rootController.handle
   }
