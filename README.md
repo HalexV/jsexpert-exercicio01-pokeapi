@@ -23,7 +23,7 @@ Deve retornar um array com 3 pokemóns aleatórios, contendo seus respectivos `n
 * [ ] mocks
 * [ ] stubs
 * [ ] spies
-* [ ] testes end-2-end
+* [x] testes end-2-end
 * [ ] testes unitários
 * [ ] 100% de code coverage
 
@@ -78,7 +78,7 @@ URLs Úteis ao desafio:
 ### Checklist features
 
 - Web API
-  * [ ] Deve ter uma rota raiz usada como _fallback_.
+  * [x] Deve ter uma rota raiz usada como _fallback_.
   * [ ] Deve ter uma rota de `/team`, onde: 
     * [ ] Deve consumir a PokeAPI e selecionar 3 pokemóns aleatórios
     * [ ] Deve consumir a PokeAPI para obter mais informações sobre os pokemóns escolhidos
