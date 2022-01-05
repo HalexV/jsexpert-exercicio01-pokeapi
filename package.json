@@ -5,9 +5,9 @@
   "main": "src/api.js",
   "type": "module",
   "scripts": {
-    "dev": "npx nodemon src/server.js",
-    "test": "npx mocha -w --parallel 'test/**/*.test.js'",
-    "test:cov": "npx nyc npx mocha --parallel 'test/**/*.test.js'"
+    "dev": "nodemon src/server.js",
+    "test": "mocha -w --parallel 'test/**/*.test.js'",
+    "test:cov": "c8 mocha --parallel 'test/**/*.test.js'"
   },
   "keywords": [
     "Tests",
@@ -26,6 +26,7 @@
   "author": "Wellington S. Almeida (WellsSA)",
   "license": "MIT",
   "devDependencies": {
+    "c8": "^7.11.0",
     "chai": "^4.3.4",
     "mocha": "^9.1.3",
     "nodemon": "^2.0.15",
