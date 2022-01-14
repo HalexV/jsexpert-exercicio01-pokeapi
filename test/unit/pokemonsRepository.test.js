@@ -20,10 +20,15 @@ describe('pokemonsRepository Suite Tests', () => {
     it('should call makeGetRequest with the url containing the pokemon id', async () => {
       const sut = new PokemonsRepository()
 
+      const responseMock = {
+        data: {},
+        status: 200
+      }
+
       const expected = 'https://pokeapi.co/api/v2/pokemon/0'
 
       const makeGetRequestStub = sinon.stub(utils, 'makeGetRequest').callsFake(async () => {
-        return new Promise(resolve => resolve('ok'))
+        return new Promise(resolve => resolve(responseMock))
       })
 
       await sut.findById(0)
@@ -42,6 +47,23 @@ describe('pokemonsRepository Suite Tests', () => {
       const result = sut.findById(0)
 
       await expect(result).to.be.eventually.rejected
+    })
+
+    it('should throw when status is not 200', async () => {
+      const sut = new PokemonsRepository()
+
+      const responseMock = {
+        data: {},
+        status: 400
+      }
+
+      sinon.stub(utils, 'makeGetRequest').callsFake(async () => {
+        return new Promise(resolve => resolve(responseMock))
+      })
+
+      const result = sut.findById(0)
+
+      await expect(result).to.be.eventually.rejectedWith('Poke API not returning status 200')
     })
 
   })
