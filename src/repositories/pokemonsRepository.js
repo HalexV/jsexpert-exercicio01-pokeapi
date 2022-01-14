@@ -6,7 +6,9 @@ class PokemonsRepository {
   async findById(id) {
     const URL = `https://pokeapi.co/api/v2/pokemon/${id}`
 
-    await utils.makeGetRequest(URL)
+    const { data, status } = await utils.makeGetRequest(URL)
+
+    if (status !== 200) throw new Error('Poke API not returning status 200')
 
     return null
   }
