@@ -7,6 +7,8 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "test": "mocha -w --parallel 'test/**/*.test.js'",
+    "test:unit": "mocha -w --parallel 'test/unit/*.test.js'",
+    "test:e2e": "mocha -w --parallel 'test/e2e/*.test.js'",
     "test:cov": "c8 mocha --parallel 'test/**/*.test.js'"
   },
   "keywords": [
