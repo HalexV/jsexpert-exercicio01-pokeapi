@@ -9,6 +9,8 @@ const expect = chai.expect
 import { PokemonsRepository } from '../../src/repositories/pokemonsRepository.js'
 import utils from '../../src/utils/utils.js'
 
+import validPokemonInfo from '../mocks/valid-pokemon-info.js'
+
 describe('pokemonsRepository Suite Tests', () => {
 
   afterEach(() => {
@@ -64,6 +66,25 @@ describe('pokemonsRepository Suite Tests', () => {
       const result = sut.findById(0)
 
       await expect(result).to.be.eventually.rejectedWith('Poke API not returning status 200')
+    })
+
+    it('should return the correct pokemon data when valid id is passed', async () => {
+      const sut = new PokemonsRepository()
+
+      const responseMock = {
+        data: validPokemonInfo,
+        status: 200
+      }
+
+      const expected = validPokemonInfo
+
+      sinon.stub(utils, 'makeGetRequest').callsFake(async () => {
+        return new Promise(resolve => resolve(responseMock))
+      })
+
+      const result = await sut.findById(1)
+
+      expect(result).to.be.deep.equal(expected)
     })
 
   })
