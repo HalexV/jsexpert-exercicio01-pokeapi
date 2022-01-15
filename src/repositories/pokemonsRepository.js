@@ -6,6 +6,7 @@ class PokemonsRepository {
   async findById(id) {
     if(id <= 0) throw new Error('An id must be greater than zero')
     if(!id) throw new Error('An id must be informed')
+    if(isNaN(Number(id))) throw new Error('An id must be a number or a string number')
     
     const URL = `https://pokeapi.co/api/v2/pokemon/${id}`
 
