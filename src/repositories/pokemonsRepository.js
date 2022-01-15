@@ -10,7 +10,7 @@ class PokemonsRepository {
 
     if (status !== 200) throw new Error('Poke API not returning status 200')
 
-    return null
+    return data
   }
 }
 
