@@ -123,6 +123,25 @@ describe('pokemonsRepository Suite Tests', () => {
       await expect(result2).to.be.eventually.rejectedWith('An id must be greater than zero')
     })
 
+    it('should throw when an id results in a NaN', async () => {
+      const sut = new PokemonsRepository()
+
+      const responseMock = {
+        data: {},
+        status: 200
+      }
+
+      sinon.stub(utils, 'makeGetRequest').callsFake(async () => {
+        return new Promise(resolve => resolve(responseMock))
+      })
+
+      const result = sut.findById({ id: 1 })
+      const result2 = sut.findById('1a')
+
+      await expect(result).to.be.eventually.rejectedWith('An id must be a number or a string number')
+      await expect(result2).to.be.eventually.rejectedWith('An id must be a number or a string number')
+    })
+
   })
 
 })
