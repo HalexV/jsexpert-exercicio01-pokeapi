@@ -43,6 +43,21 @@ const makeGetRequest = async function (url) {
   
 }
 
+const getThreeUniqueRandomIds = function (max) {
+  if(max < 3) throw new Error('Max must be greater or equal to three')
+  
+  const idsArray = []
+
+  while(idsArray.length < 3) {
+    const id = Math.ceil(Math.random() * max)
+
+    if(!idsArray.includes(id)) idsArray.push(id)
+  }
+
+  return idsArray
+}
+
 export default {
-  makeGetRequest
+  makeGetRequest,
+  getThreeUniqueRandomIds
 }
