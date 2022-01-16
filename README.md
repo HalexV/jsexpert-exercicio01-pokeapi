@@ -1,5 +1,7 @@
 Hálex Viotto Gomes
 
+Geração I a IV (001 a 493)
+
 # Story: Seu primeiro time pokemon
 
 A idéia é testar os fundamentos de `testing`, aplicando o que foi visto no 
@@ -20,17 +22,17 @@ Deve retornar um array com 3 pokemóns aleatórios, contendo seus respectivos `n
 
 ### Testes
 
-* [ ] mocks
-* [ ] stubs
-* [ ] spies
+* [x] mocks
+* [x] stubs
+* [x] spies
 * [x] testes end-2-end
-* [ ] testes unitários
+* [x] testes unitários
 * [ ] 100% de code coverage
 
 ### Extras
 
-* [ ] TDD e BDD, será que rola? Acho que vale a tentativa!
-* [ ] Que tal consumir a API sem usar libs externas? o módulo `https` do node pode ser bem interessante!
+* [x] TDD e BDD, será que rola? Acho que vale a tentativa!
+* [x] Que tal consumir a API sem usar libs externas? o módulo `https` do node pode ser bem interessante!
 
 ## Dicas
 
