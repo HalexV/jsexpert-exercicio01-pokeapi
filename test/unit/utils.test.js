@@ -13,6 +13,12 @@ describe('Utils Suite Tests', () => {
       expect(() => sut(2)).to.throws('Max must be greater or equal to three')
     })
 
+    it('should throw when max is not a number', () => {
+      const sut = utils.getThreeUniqueRandomIds
+      
+      expect(() => sut('2')).to.throws('Max must be a number')
+    })
+
   })
 
 })
