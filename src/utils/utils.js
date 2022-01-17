@@ -50,12 +50,12 @@ const getThreeUniqueRandomIds = function (max) {
   const idsArray = []
 
   while(idsArray.length < 3) {
-    const id = Math.ceil(Math.random() * max)
+    const id = Math.floor(Math.random() * max + 1)
 
     if(!idsArray.includes(id)) idsArray.push(id)
   }
 
-  return idsArray
+  return idsArray.sort((firstEl, secondEl) => firstEl - secondEl)
 }
 
 export default {
