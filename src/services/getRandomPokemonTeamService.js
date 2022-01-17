@@ -8,13 +8,16 @@ class GetRandomPokemonTeamService {
     this.pokemonsRepository = pokemonsRepository
   }
   
-  // Todos os pokémons possuem no mínimo três moves?
   async execute() {
     const END_RANGE = 493
 
     const idsArray = utils.getThreeUniqueRandomIds(END_RANGE)
 
-    // Obter as informações do pokémon pelo id
+    const resultArray = await Promise.all([
+      this.pokemonsRepository.findById(idsArray[0]),
+      this.pokemonsRepository.findById(idsArray[1]),
+      this.pokemonsRepository.findById(idsArray[2]),
+    ])
 
     // Verificar se o pokemon tem no mínimo 3 moves
 
