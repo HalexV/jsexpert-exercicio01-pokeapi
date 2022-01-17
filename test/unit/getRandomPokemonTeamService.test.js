@@ -39,4 +39,14 @@ describe('GetRandomPokemonTeamService Suite Tests', () => {
     expect(getThreeUniqueRandomIdsStub.calledWith(493)).to.be.ok
   })
 
+  it('should throw when getThreeUniqueRandomIds throws', async () => {
+    const sut = new GetRandomPokemonTeamService({ pokemonsRepository: {} })
+
+    sinon.stub(utils, 'getThreeUniqueRandomIds').callsFake(() => {throw new Error()})
+
+    const result = sut.execute()
+
+    await expect(result).to.be.eventually.rejected
+  })
+
 })
