@@ -44,6 +44,7 @@ const makeGetRequest = async function (url) {
 }
 
 const getThreeUniqueRandomIds = function (max) {
+  if(typeof max !== 'number') throw new Error('Max must be a number')
   if(max < 3) throw new Error('Max must be greater or equal to three')
   
   const idsArray = []
