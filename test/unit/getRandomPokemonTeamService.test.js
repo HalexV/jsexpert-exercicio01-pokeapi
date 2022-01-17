@@ -4,13 +4,16 @@ import chai from 'chai'
 import chaiAsPromised from 'chai-as-promised'
 
 import { GetRandomPokemonTeamService } from '../../src/services/getRandomPokemonTeamService.js'
+
 import { validRandomPokemonTeamMock } from '../mocks/valid-random-pokemon-team.js'
+import { findByIdResultsMocks } from '../mocks/findById-results.js'
 
 import utils from '../../src/utils/utils.js'
 
 chai.use(chaiAsPromised)
 
 const expect = chai.expect
+
 
 describe('GetRandomPokemonTeamService Suite Tests', () => {
 
@@ -30,7 +33,15 @@ describe('GetRandomPokemonTeamService Suite Tests', () => {
   })
 
   it('should call getThreeUniqueRandomIds with 493', async () => {
-    const sut = new GetRandomPokemonTeamService({ pokemonsRepository: {} })
+    const findByIdStub = sinon.stub().callsFake(async () => {
+      return new Promise(resolve => resolve(
+        findByIdResultsMocks[0]
+      ))
+    })
+
+    const sut = new GetRandomPokemonTeamService({ pokemonsRepository: {
+      findById: findByIdStub
+    } })
 
     const getThreeUniqueRandomIdsStub = sinon.stub(utils, 'getThreeUniqueRandomIds').returns([1,2,3])
 
@@ -47,6 +58,27 @@ describe('GetRandomPokemonTeamService Suite Tests', () => {
     const result = sut.execute()
 
     await expect(result).to.be.eventually.rejected
+  })
+
+  it('should call findById with ascending ids array positions', async () => {
+    const findByIdStub = sinon.stub().callsFake(async () => {
+      return new Promise(resolve => resolve(
+        findByIdResultsMocks[0]
+      ))
+    })
+
+    const sut = new GetRandomPokemonTeamService({ pokemonsRepository: {
+      findById: findByIdStub
+    } })
+
+    sinon.stub(utils, 'getThreeUniqueRandomIds').returns([1,2,3])
+
+    await sut.execute()
+
+    expect(findByIdStub.callCount).to.be.equal(3)
+    expect(findByIdStub.firstCall.calledWith(1)).to.be.ok
+    expect(findByIdStub.secondCall.calledWith(2)).to.be.ok
+    expect(findByIdStub.thirdCall.calledWith(3)).to.be.ok
   })
 
 })
