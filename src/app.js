@@ -2,6 +2,7 @@
 import http from 'http'
 
 import { RootController } from './controllers/root-controller.js'
+import { adaptRoute } from './adapters/node/node-route-adapter.js';
 
 const rootController = new RootController()
 
@@ -12,7 +13,7 @@ const requestListener = async (request, response) => {
   const resource = `${method}:${url}`.toLowerCase()
   
   const routes = {
-    default: rootController.handle
+    default: adaptRoute(rootController)
   }
 
   const executeRoute = routes[resource] || routes['default']

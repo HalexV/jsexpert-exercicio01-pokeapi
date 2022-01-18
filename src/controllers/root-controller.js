@@ -1,9 +1,13 @@
 'use strict';
 
 class RootController {
-  async handle(request, response){
-    response.writeHead(200, { 'Content-Type': 'application/json' });
-    return response.end(JSON.stringify({data: 'Hello World!'}))
+  async handle(httpRequest){
+    return {
+      statusCode: 200,
+      body: {
+        data: 'Hello World!'
+      }
+    }
   }
 }
 
