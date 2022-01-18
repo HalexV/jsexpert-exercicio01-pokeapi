@@ -81,4 +81,18 @@ describe('GetRandomPokemonTeamService Suite Tests', () => {
     expect(findByIdStub.thirdCall.calledWith(3)).to.be.ok
   })
 
+  it('should throw when findById throws', async () => {
+    const findByIdStub = sinon.stub().callsFake(async () => {
+      return new Promise((resolve, reject) => reject(new Error()))
+    })
+
+    const sut = new GetRandomPokemonTeamService({ pokemonsRepository: {
+      findById: findByIdStub
+    } })
+
+    const result = sut.execute()
+
+    await expect(result).to.be.eventually.rejected
+  })
+
 })
