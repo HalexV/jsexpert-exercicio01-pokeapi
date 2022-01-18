@@ -1,11 +1,16 @@
 import { expect } from "chai";
-import { describe, it } from "mocha";
+import { describe, it, before } from "mocha";
+import sinon from 'sinon'
 
 import { GetRandomPokemonTeamController } from "../../src/controllers/getRandomPokemonTeamController.js";
 
 import { validRandomPokemonTeamMock } from '../mocks/valid-random-pokemon-team.js'
 
 describe('GetRandomPokemonTeamController Suite Tests', () => {
+
+  before(() => {
+    sinon.stub(console, 'error')
+  })
 
   it('should return status code 200 and the random pokemon team when getRandomPokemonTeamService succeed', async () => {
     const executeStub = async () => new Promise(resolve => resolve(validRandomPokemonTeamMock))
