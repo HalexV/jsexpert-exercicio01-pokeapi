@@ -26,4 +26,23 @@ describe('GetRandomPokemonTeamController Suite Tests', () => {
     expect(result).to.be.deep.equal(expected)
   })
 
+  it('should return status code 500 when getRandomPokemonTeamService throws', async () => {
+    const executeStub = async () => new Promise((resolve, reject) => reject({message: 'erro'}))
+
+    const sut = new GetRandomPokemonTeamController({
+      getRandomPokemonTeamService: {
+        execute: executeStub
+      }
+    })
+
+    const expected = {
+      statusCode: 500,
+      body: {message: 'erro'}
+    }
+
+    const result = await sut.handle({})
+
+    expect(result).to.be.deep.equal(expected)
+  })
+
 })
