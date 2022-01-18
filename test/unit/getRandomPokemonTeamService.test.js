@@ -6,7 +6,9 @@ import chaiAsPromised from 'chai-as-promised'
 import { GetRandomPokemonTeamService } from '../../src/services/getRandomPokemonTeamService.js'
 
 import { validRandomPokemonTeamMock } from '../mocks/valid-random-pokemon-team.js'
+import { validRandomPokemonTeamLessMovesMock } from '../mocks/valid-random-pokemon-team-less-moves.js'
 import { findByIdResultsMocks } from '../mocks/findById-results.js'
+import { findByIdResultsLessMovesMocks } from '../mocks/findById-results-less-moves.js'
 
 import utils from '../../src/utils/utils.js'
 
@@ -39,9 +41,22 @@ describe('GetRandomPokemonTeamService Suite Tests', () => {
 
   })
 
-  // it('should return a valid random pokemon team when any pokemon results have less than three moves', async () => {
+  it('should return a valid random pokemon team when any pokemon results have less than three moves', async () => {
+    const findByIdStub = sinon.stub()
+    findByIdStub.onFirstCall().resolves(findByIdResultsLessMovesMocks[0])
+    findByIdStub.onSecondCall().resolves(findByIdResultsLessMovesMocks[1])
+    findByIdStub.onThirdCall().resolves(findByIdResultsLessMovesMocks[2])
+    
+    const sut = new GetRandomPokemonTeamService({ pokemonsRepository: {
+      findById: findByIdStub
+    } })
 
-  // })
+    const expected = validRandomPokemonTeamLessMovesMock
+
+    const result = await sut.execute()
+
+    expect(result).to.be.deep.equal(expected)
+  })
 
   it('should call getThreeUniqueRandomIds with 493', async () => {
     const findByIdStub = sinon.stub().callsFake(async () => {
