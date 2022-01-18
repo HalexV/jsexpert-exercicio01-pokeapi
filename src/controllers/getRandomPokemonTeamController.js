@@ -6,12 +6,21 @@ class GetRandomPokemonTeamController {
   }
   
   async handle(httpRequest) {
-    const randomPokemonTeam = await this.getRandomPokemonTeamService.execute()
+    try {
+      const randomPokemonTeam = await this.getRandomPokemonTeamService.execute()
 
-    return {
-      statusCode: 200,
-      body: randomPokemonTeam
+      return {
+        statusCode: 200,
+        body: randomPokemonTeam
+      }
+    } catch (error) {
+      console.error(error)
+      return {
+        statusCode: 500,
+        body: error
+      }
     }
+    
   }
 }
 
