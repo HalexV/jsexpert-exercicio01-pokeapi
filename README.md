@@ -4,7 +4,7 @@ Geração I a IV (001 a 493)
 
 # Story: Seu primeiro time pokemon
 
-A idéia é testar os fundamentos de `testing`, aplicando o que foi visto no 
+A ideia é testar os fundamentos de `testing`, aplicando o que foi visto no 
 `JS Expert - Módulo 02` num projeto simples e divertido.
 
 Consumindo a [PokeAPI](https://pokeapi.co/), faça uma API que retorne 3 pokemóns aleatórios para formar seu time inicial numa jornada pokemon.
@@ -27,7 +27,7 @@ Deve retornar um array com 3 pokemóns aleatórios, contendo seus respectivos `n
 * [x] spies
 * [x] testes end-2-end
 * [x] testes unitários
-* [ ] 100% de code coverage
+* [-] 100% de code coverage
 
 ### Extras
 
@@ -81,14 +81,14 @@ URLs Úteis ao desafio:
 
 - Web API
   * [x] Deve ter uma rota raiz usada como _fallback_.
-  * [ ] Deve ter uma rota de `/team`, onde: 
-    * [ ] Deve consumir a PokeAPI e selecionar 3 pokemóns aleatórios
-    * [ ] Deve consumir a PokeAPI para obter mais informações sobre os pokemóns escolhidos
-    * [ ] Deve retornar um objeto JSON conetendo um array com 3 pokemóns, cada um com seus respectivos `name (String)` e `moves (String[])`
+  * [x] Deve ter uma rota de `/team`, onde: 
+    * [x] Deve consumir a PokeAPI e selecionar 3 pokemóns aleatórios
+    * [x] Deve consumir a PokeAPI para obter mais informações sobre os pokemóns escolhidos
+    * [x] Deve retornar um objeto JSON contendo um array com 3 pokemóns, cada um com seus respectivos `name (String)` e `moves (String[])`
 
 - Testes
-  * [ ] Deve ter cobertura de testes end-2-end e unitários
-  * [ ] 100% de code coverage
+  * [x] Deve ter cobertura de testes end-2-end e unitários
+  * [-] 100% de code coverage
 
 ## Submissão
 
@@ -103,3 +103,46 @@ URLs Úteis ao desafio:
 ## Até quando?
 
 Se você está pegando esse desafio na estréia, corre lá e envia pra gente até *Quarta-feira, 10 de novembro de 2021 (10/11/2021)*!
+
+## Versão
+
+Node 17+
+
+## Instalação
+
+1. Clone este repositório
+2. Entre na pasta do projeto via terminal
+3. Estando no diretório raiz do projeto que possui o package.json
+4. Rode npm install para instalar as dependências do projeto
+
+## Comandos
+
+Rodar o projeto:
+```shell
+npm run start
+```
+
+Rodar o projeto em modo de desenvolvimento:
+```shell
+npm run dev
+```
+
+Rodar a suite completa de testes:
+```shell
+npm run test
+```
+
+Rodar a suite de testes unitários:
+```shell
+npm run test:unit
+```
+
+Rodar a suite de testes end-to-end:
+```shell
+npm run test:e2e
+```
+
+Rodar a cobertura de testes:
+```shell
+npm run test:cov
+```
