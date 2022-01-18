@@ -21,16 +21,27 @@ describe('GetRandomPokemonTeamService Suite Tests', () => {
     sinon.restore()
   })
   
-  it.skip('should return a valid random pokemon team when execute is called', async () => {
-    const sut = new GetRandomPokemonTeamService({ pokemonsRepository: {} })
+  it('should return a valid random pokemon team when execute is called', async () => {
+    const findByIdStub = sinon.stub()
+    findByIdStub.onFirstCall().resolves(findByIdResultsMocks[0])
+    findByIdStub.onSecondCall().resolves(findByIdResultsMocks[1])
+    findByIdStub.onThirdCall().resolves(findByIdResultsMocks[2])
+    
+    const sut = new GetRandomPokemonTeamService({ pokemonsRepository: {
+      findById: findByIdStub
+    } })
 
     const expected = validRandomPokemonTeamMock
 
     const result = await sut.execute()
 
-    expect(result).to.be.equal(expected)
+    expect(result).to.be.deep.equal(expected)
 
   })
+
+  // it('should return a valid random pokemon team when any pokemon results have less than three moves', async () => {
+
+  // })
 
   it('should call getThreeUniqueRandomIds with 493', async () => {
     const findByIdStub = sinon.stub().callsFake(async () => {
